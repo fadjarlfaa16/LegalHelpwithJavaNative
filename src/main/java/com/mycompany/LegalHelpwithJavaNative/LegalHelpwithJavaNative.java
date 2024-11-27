@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.tubes;
+package com.mycompany.legalhelpwithjavanative;
 
 /**
  *
  * @author Administrator
  */
-public class TUBES {
+public class LegalHelpwithJavaNative {
 
     public static void main(String[] args) {
         
