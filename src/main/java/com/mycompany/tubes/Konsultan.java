@@ -24,7 +24,7 @@ public class Konsultan extends User implements ManajemenTransaksi {
     
     public void login(String e_mail, String pw) {
         if (email == e_mail && password == pw) {
-            System.out.println("Login berhasil!\n Selamat Datang " + nama + "!");
+            System.out.println("Login berhasil!\n Selamat Datang " + nama + "!\n\n");
         }
     };
     public void register(String nama, String email, String password, String hp) {
@@ -32,12 +32,16 @@ public class Konsultan extends User implements ManajemenTransaksi {
         this.email = email;
         this.password = password;
         this.hp = hp;
-        System.out.println("Register berhasil!\n Selamat Datang " + nama + "!");
+        System.out.println("Register berhasil!\n Selamat Datang " + nama + "!\n\n");
     }
     public void updateProfile(String nama, String hp) {
         this.nama = nama;
         this.hp = hp;
         System.out.println("Informasi telah diupdate");
+    }
+    
+    public void receiveBooking(Transaksi transaksi) {
+        listTransaksi.add(transaksi);
     }
     
     public void chatKlien(Pelanggan klien) {
@@ -80,9 +84,7 @@ public class Konsultan extends User implements ManajemenTransaksi {
     
     public void historiTransaksi() {
         for (Transaksi t : listTransaksi) {
-            System.out.println("ID transaksi: " + t.getId());
-            System.out.println("Penerima: " + t.getReceiver());
-            System.out.println("Jumlah: " + t.getJumlah());
+            System.out.println("ID transaksi: " + t.getId() + "\nPenerima: " + t.getReceiver() + "\nJumlah: " + t.getJumlah());
         }
     }
     

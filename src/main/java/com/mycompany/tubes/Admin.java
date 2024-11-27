@@ -21,7 +21,7 @@ public class Admin extends User {
     
     public void login(String e_mail, String pw) {
         if (email == e_mail && password == pw) {
-            System.out.println("Login berhasil!\n Selamat Datang " + nama + "!");
+            System.out.println("--- Login berhasil! ---\n Selamat Datang " + nama + "!\n\n");
         }
     };
     public void register(String nama, String email, String password, String hp) {
@@ -29,7 +29,7 @@ public class Admin extends User {
         this.email = email;
         this.password = password;
         this.hp = hp;
-        System.out.println("Register berhasil!\n Selamat Datang " + nama + "!");
+        System.out.println("--- Register berhasil! ---\n Selamat Datang " + nama + "!\n\n");
     }
     public void updateProfile(String nama, String hp) {
         this.nama = nama;
@@ -46,14 +46,38 @@ public class Admin extends User {
     }
     
     public void getListUser() {
+        ArrayList<Pelanggan> lP = new ArrayList<>();
+        ArrayList<Konsultan> lK = new ArrayList<>();
         for (User u : listUser) {
-            System.out.println("Nama: " + u.nama + "\nEmail: " + u.email + "\nPassword: " + u.password + "\nNomor Telepon: " + u.hp);
+            if (u instanceof Pelanggan) {
+                Pelanggan p = (Pelanggan) u;
+                lP.add(p);
+            } else if (u instanceof Konsultan) {
+                Konsultan k = (Konsultan) u;
+                lK.add(k);
+            }
+        }
+        System.out.println("-------- Pelanggan --------");
+        System.out.println("---------------------------");
+        for (Pelanggan p : lP) {
+            System.out.println("Nama: " + p.nama + "\nEmail: " + p.email + "\nPassword: " + p.password + "\nNomor Telepon: " + p.hp + "\nSaldo Akun: " + p.cekSaldo());
+            System.out.println("---------------------------");
+        }
+        System.out.println("");
+        System.out.println("-------- Konsultan --------");
+        System.out.println("---------------------------");
+        for (Konsultan k : lK) {
+            System.out.println("Nama: " + k.nama + "\nEmail: " + k.email + "\nPassword: " + k.password + "\nNomor Telepon: " + k.hp + "\nSaldo Akun: " + k.cekSaldo());
+            System.out.println("---------------------------");
         }
     }
     
     public void getListTransaksi() {
+        System.out.println("-------- Transaksi --------");
+        System.out.println("---------------------------");
         for (Transaksi t : listTransaksi) {
             System.out.println("ID: " + t.getId() + "\nPengirim: " + t.getSender() + "\nPenerima: " + t.getReceiver() + "\nJumlah: " + t.getJumlah());
+            System.out.println("---------------------------");
         }
     }
     
@@ -61,7 +85,7 @@ public class Admin extends User {
         
     }
     
-    public Artikel addArtikel(Admin a) {
+    public Artikel addArtikel() {
         Scanner s = new Scanner(System.in);
         System.out.print("Masukkan ID artikel: ");
         String id = s.next();
@@ -74,7 +98,7 @@ public class Admin extends User {
         return new Artikel(id, judul, nama, konten, tanggal);
     }
     
-    public BukuPasal addBukuPasal(Admin a) {
+    public BukuPasal addBukuPasal() {
         Scanner s = new Scanner(System.in);
         System.out.print("Masukkan ID buku pasal: ");
         String id = s.next();

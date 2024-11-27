@@ -11,6 +11,6 @@ package com.mycompany.tubes;
 public class TUBES {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
     }
 }
