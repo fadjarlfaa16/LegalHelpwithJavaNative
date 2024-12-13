@@ -13,7 +13,6 @@ import java.util.Scanner;
  */
 public class Konsultan extends User implements ManajemenTransaksi {
     private ArrayList<Transaksi> listTransaksi = new ArrayList<>();
-    private ArrayList<SesiChat> chat = new ArrayList<>();
     private double saldoAkun;
     double harga;
 
@@ -42,44 +41,6 @@ public class Konsultan extends User implements ManajemenTransaksi {
     
     public void receiveBooking(Transaksi transaksi) {
         listTransaksi.add(transaksi);
-    }
-    
-    public void chatKlien(Pelanggan klien) {
-        Scanner s = new Scanner(System.in);
-        System.out.print("Masukkan ID sesi chat: ");
-        String id = s.next();
-        System.out.println("Masukkan pesan: ");
-        String pesan = s.next();
-        boolean find = false;
-        for (SesiChat ses : chat) {
-            if (ses.getId().equals(id)) {
-                find = true;
-                ses.addChat(pesan);
-                klien.showChat(id).addChat(pesan);
-            }
-        }
-        if (find == false) {
-            SesiChat sc = new SesiChat(id, nama, klien.nama);
-            sc.addChat(pesan);
-            klien.chatKonsultan(id, nama);
-            klien.showChat(id).addChat(pesan);
-            chat.add(sc);
-        }
-    }
-    
-    public void chatKlien(String id, String klien) {
-        SesiChat sc = new SesiChat(id, nama, klien);
-        chat.add(sc);
-    }
-    
-    public SesiChat showChat(String id) {
-        SesiChat session = null;
-        for (SesiChat ses : chat) {
-            if (ses.getId().equals(id)) {
-                session = ses;
-            }
-        }
-        return session;
     }
     
     public void historiTransaksi() {

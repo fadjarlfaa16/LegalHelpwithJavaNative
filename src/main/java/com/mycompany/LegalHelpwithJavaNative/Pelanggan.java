@@ -15,7 +15,6 @@ public class Pelanggan extends User implements ManajemenTransaksi {
     private ArrayList<Transaksi> listTransaksi = new ArrayList<>();
     private ArrayList<Konsultan> listKonsultan = new ArrayList<>();
     private ArrayList<Post> postingan = new ArrayList<>();
-    private ArrayList<SesiChat> chat = new ArrayList<>();
     private double saldoAkun;
 
     public Pelanggan() {
@@ -79,44 +78,6 @@ public class Pelanggan extends User implements ManajemenTransaksi {
         System.out.println("--- ditulis oleh: " + bukuPasal.getPenulis() + " ---");
         System.out.println("--- dirilis tanggal: " + bukuPasal.getTanggal() + " ---");
         System.out.println(bukuPasal.getKonten());
-    }
-    
-    public void chatKonsultan(Konsultan konsultan) {
-        Scanner s = new Scanner(System.in);
-        System.out.print("Masukkan ID sesi chat: ");
-        String id = s.next();
-        System.out.println("Masukkan pesan: ");
-        String pesan = s.next();
-        boolean find = false;
-        for (SesiChat ses : chat) {
-            if (ses.getId().equals(id)) {
-                find = true;
-                ses.addChat(pesan);
-                konsultan.showChat(id).addChat(pesan);
-            }
-        }
-        if (find == false) {
-            SesiChat sc = new SesiChat(id, nama, konsultan.nama);
-            sc.addChat(pesan);
-            konsultan.chatKlien(id, nama);
-            konsultan.showChat(id).addChat(pesan);
-            chat.add(sc);
-        }
-    }
-    
-    public void chatKonsultan(String id, String konsultan) {
-        SesiChat sc = new SesiChat(id, nama, konsultan);
-        chat.add(sc);
-    }
-    
-    public SesiChat showChat(String id) {
-        SesiChat session = null;
-        for (SesiChat ses : chat) {
-            if (ses.getId().equals(id)) {
-                session = ses;
-            }
-        }
-        return session;
     }
     
     public void historiTransaksi() {
