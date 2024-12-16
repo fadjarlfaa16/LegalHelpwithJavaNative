@@ -82,7 +82,16 @@ public class Admin extends User {
     }
     
     public void manipulasiAkun(User user) {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Masukkan email akun yang ingin dihapus: ");
+        String email = s.next();
         
+        if(user.getEmail().equals(email)){
+            listUser.remove(user);
+            System.out.println("Akun Berhasil di hapus!");
+        }else {
+            System.out.println("Akun dengan email tersebut tidak ditemukan. ");    
+        }
     }
     
     public Artikel addArtikel() {
@@ -112,6 +121,6 @@ public class Admin extends User {
     }
     
     public void manipulasiForum(Post post) {
-        
+            
     }
 }

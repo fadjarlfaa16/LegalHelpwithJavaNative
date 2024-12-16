@@ -21,6 +21,10 @@ public abstract class User {
         this.hp = null;
     }
     
+    public String getEmail() {
+        return email;
+    }
+    
     public abstract void login(String email, String password);
     public abstract void register(String nama, String email, String password, String hp);
     public abstract void updateProfile(String nama, String hp);
